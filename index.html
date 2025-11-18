@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://ubiqo.net/wp-content/uploads/2023/10/dashboard-gas-lp.jpg"> <!-- Reemplazar con URL real de imagen tuya -->
     <meta property="og:url" content="https://tudominio.com">
     
-    <!-- Tailwind CSS CDN: Restores styling immediately -->
+    <!-- Tailwind CSS CDN: Backup for styling stability -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -96,20 +96,19 @@
       ]
     }
     </script>
-
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://aistudiocdn.com/react@^19.2.0",
-        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-        "react/": "https://aistudiocdn.com/react@^19.2.0/",
-        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-        "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-        "vite": "https://aistudiocdn.com/vite@^7.2.2"
-      }
-    }
-    </script>
-  </head>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+</head>
   <body class="bg-bg text-slate-800 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
