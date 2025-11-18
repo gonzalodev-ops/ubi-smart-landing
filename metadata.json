@@ -1,5 +1,5 @@
 {
-  "name": "UBI-SMART Gas LP",
-  "description": "GPS and valve reading solution for Gas LP companies, ensuring compliance with CNE and SIRACP regulations.",
+  "name": "UBI-SMART Gas LP | Software CNE & SIRACP",
+  "description": "Solución de telemetría especializada para cumplimiento regulatorio CNE y SIRACP en gaseras de Gas LP.",
   "requestFramePermissions": []
 }
