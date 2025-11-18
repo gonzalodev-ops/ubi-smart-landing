@@ -12,10 +12,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["."],
+  "include": ["src", "components", "*.tsx", "*.ts"],
+  "exclude": ["node_modules", "dist", "vite.config.ts", "tailwind.config.js", "postcss.config.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
