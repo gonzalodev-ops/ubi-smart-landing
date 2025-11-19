@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, TrendingUp, CheckCircle2, Map, Activity, BarChart3, Phone, Mail, ArrowRight, Loader2, Lock } from 'lucide-react';
+import { X, Map, Activity, BarChart3, Phone, Mail, ArrowRight, Loader2, Lock, CheckCircle2 } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface OnePagerProps {
@@ -149,10 +149,10 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
         id="printable-area"
         className="bg-white w-full max-w-[800px] min-h-[1000px] shadow-2xl relative print:shadow-none print:w-full print:max-w-none print:h-auto overflow-hidden flex flex-col"
       >
-        {/* HEADER */}
+        {/* HEADER - FORZAR COLOR DE FONDO */}
         <div 
             className="bg-brand-accent text-white p-8 relative overflow-hidden print:p-6"
-            style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }} // FORZAR IMPRESIÓN DE FONDO
+            style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#0b1f33', color: 'white' }} 
         >
           {/* Marca de agua decorativa */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand rounded-full -mr-16 -mt-16 opacity-20 blur-2xl print:opacity-10"></div>
@@ -167,7 +167,7 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
              </div>
              
              {/* PERSONALIZACIÓN DESTACADA */}
-             <div className="text-right bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur-sm">
+             <div className="text-right bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur-sm" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: 'rgba(255,255,255,0.1)' }}>
                 <div className="text-[10px] text-gray-300 uppercase tracking-wider mb-0.5">Documento preparado para:</div>
                 <div className="font-bold text-white text-sm md:text-base">{formData.company || "Tu Empresa"}</div>
                 <div className="text-[9px] text-brand-light">{formData.name}</div>
@@ -186,7 +186,10 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
           {/* COMPARATIVA */}
           <div className="grid md:grid-cols-2 gap-6 mb-8 print:gap-4 print:mb-6">
              {/* Lado Gasto */}
-             <div className="bg-slate-50 rounded-xl p-5 border border-gray-200 print:bg-slate-50" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+             <div 
+                className="bg-slate-50 rounded-xl p-5 border border-gray-200 print:bg-slate-50" 
+                style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#f8fafc' }}
+             >
                 <div className="flex items-center gap-2 mb-3 text-gray-500 font-bold text-base">
                    <Map size={20} />
                    GPS Tradicional (Gasto)
@@ -202,7 +205,10 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
              </div>
 
              {/* Lado Inversión */}
-             <div className="bg-green-50 rounded-xl p-5 border border-green-100 print:bg-green-50" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+             <div 
+                className="bg-green-50 rounded-xl p-5 border border-green-100 print:bg-green-50" 
+                style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#f0fdf4' }}
+             >
                 <div className="flex items-center gap-2 mb-3 text-brand-dark font-bold text-base">
                    <Activity size={20} />
                    Inteligencia UBI-SMART
@@ -239,7 +245,7 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
              
              <div className="grid grid-cols-4 gap-3 text-center">
                 {['100% Cumplimiento', 'Anti Fraude', 'API Integración', 'ROI Inmediato'].map((item, i) => (
-                    <div key={i} className="p-2 bg-gray-50 rounded-lg border border-gray-100" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+                    <div key={i} className="p-2 bg-gray-50 rounded-lg border border-gray-100" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#f9fafb' }}>
                         <div className="text-brand-dark font-bold text-xs md:text-sm">{item.split(' ')[0]}</div>
                         <div className="text-[9px] uppercase font-bold text-gray-400">{item.split(' ').slice(1).join(' ')}</div>
                     </div>
@@ -248,10 +254,10 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* FOOTER CONTACTO */}
+        {/* FOOTER CONTACTO - FORZAR COLOR */}
         <div 
             className="bg-slate-900 text-white p-6 print:bg-slate-900 print:text-white"
-            style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }} // FORZAR IMPRESIÓN DE FONDO
+            style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#0f172a', color: 'white' }}
         >
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div>
@@ -284,7 +290,7 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
         </div>
         
         {/* Legal Footer */}
-        <div className="bg-slate-950 p-3 text-center" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+        <div className="bg-slate-950 p-3 text-center" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#020617', color: 'white' }}>
             <p className="text-[9px] text-gray-500 uppercase tracking-wider">
                 UBI-SMART Gas LP · Soluciones Ubiqo · Documento ID: {new Date().getTime().toString().slice(-6)}
             </p>

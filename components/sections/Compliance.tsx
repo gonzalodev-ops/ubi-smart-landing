@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Circle, AlertTriangle, ShieldCheck, RefreshCw, Lock } from 'lucide-react';
+import { CheckCircle2, Circle, AlertTriangle, ShieldCheck, RefreshCw, Lock, BookOpen } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { CNEGuide } from '../resources/CNEGuide';
 
 interface ComplianceItem {
   id: string;
@@ -27,6 +28,7 @@ const siracpItems: ComplianceItem[] = [
 export const Compliance: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'cne' | 'siracp'>('cne');
   const [checkedState, setCheckedState] = useState<Record<string, boolean>>({});
+  const [showGuide, setShowGuide] = useState(false);
 
   const currentItems = activeTab === 'cne' ? cneItems : siracpItems;
   
@@ -59,6 +61,8 @@ export const Compliance: React.FC = () => {
 
   return (
     <section id="cumplimiento" className="py-20 px-5 bg-slate-50 border-y border-gray-200">
+      <CNEGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
+      
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <div className="text-xs font-bold text-brand-dark uppercase tracking-widest mb-2">Autodiagnóstico</div>
@@ -192,9 +196,20 @@ export const Compliance: React.FC = () => {
                 </div>
               )}
 
-              <Button fullWidth onClick={scrollToContact}>
-                {progress === 100 ? 'Solicitar Auditoría Preventiva' : 'Cerrar brechas de cumplimiento'}
-              </Button>
+              <div className="space-y-3">
+                <Button fullWidth onClick={scrollToContact}>
+                  {progress === 100 ? 'Solicitar Auditoría Preventiva' : 'Cerrar brechas de cumplimiento'}
+                </Button>
+                
+                <button 
+                  onClick={() => setShowGuide(true)}
+                  className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-gray-500 hover:text-brand transition-colors"
+                >
+                   <BookOpen size={16} />
+                   Leer Guía de Implementación
+                </button>
+              </div>
+
             </div>
           </div>
         </div>

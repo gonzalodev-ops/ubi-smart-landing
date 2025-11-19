@@ -9,41 +9,64 @@
 }
 
 @media print {
-  /* Configuración estricta de página Carta (US Letter) */
+  /* Configuración base de página */
   @page {
     size: letter;
     margin: 0mm;
   }
 
-  /* Ocultar todo el contenido del body por defecto para evitar páginas en blanco */
+  /* Ocultar todo por defecto */
   body {
     visibility: hidden;
-    height: 100vh;
-    overflow: hidden;
+    background: white;
   }
 
-  /* Hacer visible SOLO el área imprimible y sus hijos */
-  #printable-area, #printable-area * {
-    visibility: visible;
-  }
-
-  /* Posicionar el área imprimible de forma absoluta para tomar control total de la hoja */
+  /* --- ESTILOS PARA ONE PAGER (1 PÁGINA FIJA) --- */
   #printable-area {
+    visibility: visible;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Forzar altura de hoja */
     margin: 0;
     padding: 0;
     background: white;
     z-index: 9999;
-    /* Escalar al 85% para garantizar que quepa en una sola hoja con márgenes seguros de impresora */
-    transform: scale(0.85);
+    transform: scale(0.85); /* Ajuste para márgenes de impresora */
     transform-origin: top center;
+    overflow: hidden; /* Cortar desbordes */
+  }
+  #printable-area * {
+    visibility: visible;
   }
 
-  /* Ocultar botones de la interfaz del modal */
+  /* --- ESTILOS PARA GUÍA CNE (MULTI PÁGINA) --- */
+  #printable-guide {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto; /* Permitir flujo vertical */
+    margin: 0;
+    padding: 0;
+    background: white;
+    z-index: 9999;
+    overflow: visible;
+  }
+  #printable-guide * {
+    visibility: visible;
+  }
+  
+  /* Evitar cortes feos en párrafos y títulos de la guía */
+  .chapter-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+
+  /* Ocultar botones de UI */
   .no-print {
     display: none !important;
   }
