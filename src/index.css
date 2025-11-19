@@ -7,3 +7,37 @@
     @apply overflow-x-hidden w-full relative;
   }
 }
+
+@media print {
+  body > *:not(#root) {
+    display: none !important;
+  }
+  /* Ocultar todo excepto el area imprimible dentro de #root */
+  #root > * {
+    display: none !important;
+  }
+  /* Permitir que el modal sea visible si existe */
+  #printable-area {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  
+  /* Asegurar que el padre del modal (OnePager) sea visible */
+  .fixed.inset-0.z-\[100\] {
+    display: block !important;
+    position: static !important;
+    background: white !important;
+  }
+  
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+}

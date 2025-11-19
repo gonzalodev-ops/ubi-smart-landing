@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { Map, Truck, FileText, Bell, Search, Menu, Navigation, AlertTriangle, CheckCircle2, Radio } from 'lucide-react';
+import { Map, Truck, FileText, Bell, Search, Menu, Navigation, AlertTriangle, CheckCircle2, Radio, FileDown } from 'lucide-react';
+import { OnePager } from '../resources/OnePager';
 
 export const Hero: React.FC = () => {
+  const [showOnePager, setShowOnePager] = useState(false);
+
   const scrollToContact = () => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToFeatures = () => {
-    // Llevamos al usuario a ver el "producto" (Mapa de calor) en lugar del formulario directo
     document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section className="relative pt-24 md:pt-32 pb-16 md:pb-24 px-5 overflow-hidden">
+      
+      <OnePager isOpen={showOnePager} onClose={() => setShowOnePager(false)} />
+
       {/* Ambient Background Mesh */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full bg-brand/5 blur-3xl"></div>
@@ -52,11 +57,21 @@ export const Hero: React.FC = () => {
             <Button icon="play" className="shadow-xl shadow-brand/20 w-full sm:w-auto" onClick={scrollToFeatures}>
               Conocer la plataforma
             </Button>
-            <button onClick={scrollToContact} className="text-xs text-gray-500 sm:pl-4 sm:border-l border-gray-200 hover:text-brand-dark transition-colors text-left">
-              <div className="font-bold text-brand-accent">¿Tienes prisa?</div>
-              Solicitar diagnóstico directo
+            
+            <button 
+              onClick={() => setShowOnePager(true)}
+              className="px-5 py-3 rounded-full border border-gray-200 text-gray-600 font-semibold hover:bg-white hover:border-brand hover:text-brand transition-all flex items-center gap-2 w-full sm:w-auto justify-center"
+            >
+              <FileDown size={18} />
+              Ficha Técnica (PDF)
             </button>
           </div>
+          
+          <div className="mt-6 text-xs text-gray-400 flex items-center gap-2">
+             <CheckCircle2 size={14} className="text-brand" />
+             <span>¿Tienes prisa? <button onClick={scrollToContact} className="underline hover:text-brand">Ir directo a contacto</button></span>
+          </div>
+
         </div>
 
         {/* Right: High Fidelity SaaS Mockup */}
