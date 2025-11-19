@@ -5,20 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- SEO Estratégico: Enfoque en Cumplimiento, Rentabilidad y Tecnología -->
-    <title>UBI-SMART | Software GPS y Telemetría para Gas LP (CNE/SIRACP)</title>
-    <meta name="description" content="Software especializado para Gaseras en México. Garantiza cumplimiento CNE y SIRACP, controla válvulas, elimina robo de gas y optimiza rutas. Solución SaaS integral de Ubiqo.">
-    <meta name="keywords" content="GPS Gas LP, Telemetría Válvulas, Cumplimiento CNE, SIRACP, CRE, Gestión de Flotas, Robo de Combustible, Software Logística Gas, IoT Gaseras, Auditoría de Rutas, Control de Autotanques, Ubiqo">
+    <!-- SEO Estratégico: Enfoque B2B, Cumplimiento y Tecnología -->
+    <title>UBI-SMART Gas LP | Software de Telemetría, Cumplimiento CNE y SIRACP</title>
+    <meta name="description" content="Software de telemetría y GPS para gaseras en México. Asegura cumplimiento CNE y SIRACP, detecta robo de gas mediante sensores de válvula y optimiza la gestión de flotas de Gas LP.">
+    <meta name="keywords" content="GPS Gas LP, Telemetría Válvulas, Cumplimiento CNE, SIRACP, CRE, SAT, Gestión de Flotas, Robo de Combustible, Logística Gas LP, IoT Gaseras, Auditoría de Rutas, Control de Autotanques, Ubiqo, Controles Volumétricos">
     <meta name="author" content="Ubiqo - Soluciones de Telemetría">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
 
     <!-- Open Graph: Optimizado para compartir con Directivos -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="UBI-SMART | Control Total y Cumplimiento CNE para Gaseras">
-    <meta property="og:description" content="La herramienta definitiva para cumplir con la autoridad y proteger tu margen operativo. Telemetría avanzada y control de válvulas.">
+    <meta property="og:description" content="La herramienta definitiva para cumplir con la autoridad (CNE/SIRACP) y proteger tu margen operativo. Telemetría avanzada y control de válvulas.">
     <meta property="og:image" content="https://ubiqo.net/wp-content/uploads/2023/10/dashboard-gas-lp.jpg">
     <meta property="og:url" content="https://ubiqo.net/ubi-smart">
     <meta property="og:site_name" content="UBI-SMART Gas LP">
+    <meta property="og:locale" content="es_MX">
     
     <!-- Tailwind CSS CDN: Backup for styling stability -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,27 +61,23 @@
         {
           "@type": "SoftwareApplication",
           "name": "UBI-SMART Gas LP",
+          "headline": "Software de Telemetría y Cumplimiento CNE para Gaseras",
           "applicationCategory": "BusinessApplication",
-          "applicationSubCategory": "Fleet Management & Compliance",
-          "operatingSystem": "Web, iOS, Android",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "MXN",
-            "description": "Modelo SaaS (Software as a Service) con renta mensual por unidad. Incluye hardware GPS 4G y plataforma."
-          },
-          "description": "Plataforma de inteligencia y telemetría diseñada específicamente para la distribución de Gas LP en México. Permite a las gaseras cumplir con el Acuerdo de la CNE, prepararse para la integración SIRACP del SAT/CRE, y auditar aperturas de válvulas para prevenir robo de combustible.",
+          "applicationSubCategory": "Fleet Management Software",
+          "operatingSystem": "Web, Cloud, iOS, Android",
+          "description": "UBI-SMART es la solución de telemetría líder para la distribución de Gas LP en México. Diseñada para cumplir con los anexos técnicos de la CNE (Comisión Nacional de Energía) y la integración SIRACP del SAT/CRE. Ofrece rastreo GPS 4G, detección de apertura de válvulas para prevenir robo de combustible y analítica de rutas para optimizar el margen operativo.",
           "featureList": [
-            "Rastreo GPS 4G en tiempo real con alta precisión",
-            "Sensorización y detección de apertura de válvulas",
-            "Reportes de cumplimiento regulatorio CNE automatizados",
-            "API RESTful lista para integración SIRACP",
-            "Mapas de calor de densidad comercial",
-            "Auditoría de rutas y tiempos muertos"
+            "Cumplimiento normativo CNE (Comisión Nacional de Energía)",
+            "Integración SIRACP (SAT/CRE) y Controles Volumétricos",
+            "Detección de apertura de válvulas en tiempo real (Anti-fraude)",
+            "Gestión de flotas de autotanques y reparto",
+            "Mapas de calor de densidad comercial y rentabilidad",
+            "Trazabilidad histórica de rutas inalterable",
+            "API RESTful segura para integraciones ERP"
           ],
           "audience": {
             "@type": "Audience",
-            "audienceType": "Directores de Operaciones y Dueños de Gaseras",
+            "audienceType": "Directores de Operaciones, Gerentes de Logística y Dueños de Gaseras",
             "geographicArea": {
               "@type": "Country",
               "name": "México"
@@ -90,10 +87,17 @@
             "@type": "Organization",
             "name": "Ubiqo",
             "url": "https://ubiqo.net",
+            "logo": "https://ubiqo.net/logo.png",
             "sameAs": [
               "https://www.linkedin.com/company/ubiqo",
               "https://www.facebook.com/ubiqotelemetria"
             ]
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "MXN",
+            "description": "Cotización personalizada basada en tamaño de flota. Modelo SaaS mensual incluye hardware y plataforma."
           }
         },
         {
@@ -121,6 +125,14 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Mediante sensores en las válvulas de suministro. El sistema cruza la ubicación GPS con la señal de apertura de válvula. Si la válvula se abre fuera de una geocerca de cliente autorizado, se genera una alerta inmediata de posible robo."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué hardware necesito para usar UBI-SMART?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "UBI-SMART utiliza un dispositivo GPS 4G propietario e incluye sensores de lectura de válvulas. Todo el hardware necesario está incluido en el modelo de renta mensual."
               }
             }
           ]
