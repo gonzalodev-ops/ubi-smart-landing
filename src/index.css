@@ -9,6 +9,12 @@
 }
 
 @media print {
+  /* Configuración estricta de página Carta */
+  @page {
+    size: letter;
+    margin: 0mm;
+  }
+
   /* Ocultar todo el contenido del body por defecto */
   body * {
     visibility: hidden;
@@ -19,22 +25,20 @@
     visibility: visible;
   }
 
-  /* Posicionar el área imprimible en la esquina superior izquierda absoluta */
+  /* Posicionar el área imprimible y escalar para asegurar ajuste */
   #printable-area {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     background: white;
     z-index: 9999;
-  }
-
-  /* Asegurar que no haya márgenes o fondos raros */
-  @page {
-    size: auto;
-    margin: 0mm;
+    /* Escalar al 85% para garantizar que quepa en una sola hoja con márgenes seguros */
+    transform: scale(0.85);
+    transform-origin: top center;
   }
 
   /* Ocultar botones de la interfaz del modal */
