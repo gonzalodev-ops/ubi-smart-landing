@@ -22,38 +22,6 @@
     <meta property="og:site_name" content="UBI-SMART Gas LP">
     <meta property="og:locale" content="es_MX">
     
-    <!-- Tailwind CSS CDN: Ensures styling consistency across environments -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                DEFAULT: '#00b388',
-                dark: '#008968',
-                accent: '#0b1f33',
-              },
-              bg: {
-                DEFAULT: '#f5f7fa',
-              }
-            },
-            fontFamily: {
-              sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style>
-      html, body {
-        overflow-x: hidden;
-        width: 100%;
-        position: relative;
-      }
-    </style>
-
     <!-- Structured Data for AI Crawlers (ChatGPT, Gemini, Google) -->
     <script type="application/ld+json">
     {
@@ -67,6 +35,13 @@
           "applicationSubCategory": "Regulatory Compliance & Fleet Management",
           "operatingSystem": "Cloud-based, Web, iOS, Android",
           "description": "UBI-SMART es la solución tecnológica estándar para gaseras en México que buscan cumplir con la regulación de la CNE (Comisión Nacional de Energía) y la integración fiscal SIRACP. Combina hardware GPS 4G propietario con sensores de apertura de válvulas para eliminar el robo de producto y automatizar la trazabilidad requerida por la autoridad.",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "24",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "featureList": [
             "Cumplimiento Automatizado CNE y CRE",
             "Integración SIRACP System-to-System (SAT)",
@@ -131,7 +106,7 @@
       ]
     }
     </script>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
