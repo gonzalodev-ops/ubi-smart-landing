@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Printer, AlertTriangle, CheckCircle2, ShieldAlert, Zap } from 'lucide-react';
+import { X, TrendingUp, CheckCircle2, Zap, Map, Activity, BarChart3 } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface OnePagerProps {
@@ -18,7 +18,7 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/90 backdrop-blur-sm flex items-start justify-center p-0 md:p-4 print:p-0 print:bg-white print:static print:overflow-visible">
       
       {/* Controls (Hidden when printing) */}
-      <div className="fixed top-4 right-4 flex gap-3 print:hidden z-50">
+      <div className="fixed top-4 right-4 flex gap-3 print:hidden z-50 no-print">
         <Button variant="secondary" icon="arrow" onClick={handlePrint}>
           Imprimir / Guardar PDF
         </Button>
@@ -44,73 +44,74 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
                 <div className="w-10 h-10 rounded-lg bg-white text-brand-accent flex items-center justify-center font-bold text-lg">UQ</div>
                 <div>
                   <div className="font-bold uppercase tracking-widest text-sm text-brand">UBI-SMART Gas LP</div>
-                  <div className="text-[10px] text-gray-300">Tecnología de Cumplimiento</div>
+                  <div className="text-[10px] text-gray-300">Tecnología de Rentabilidad Operativa</div>
                 </div>
              </div>
              <div className="text-right">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/20 border border-red-500/50 rounded-full text-red-200 text-[10px] font-bold uppercase">
-                   <AlertTriangle size={12} /> Alerta Regulatoria 2025
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand/20 border border-brand/50 rounded-full text-brand-light text-[10px] font-bold uppercase">
+                   <TrendingUp size={12} /> Ficha de Valor 2025
                 </div>
              </div>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-2">
-            ¿Tu GPS actual protege tu Permiso<br/>o solo ubica tu camión?
+            Cumplir con la CNE es el piso.<br/>
+            <span className="text-brand">La Rentabilidad es la meta.</span>
           </h1>
-          <p className="text-lg text-gray-300">
-            El acuerdo de la CNE cambió las reglas. Lo que antes era "monitoreo", hoy es obligación legal.
+          <p className="text-lg text-gray-300 mt-2">
+            No busques solo un GPS para evitar multas. Usa la tecnología para auditar tus rutas, cerrar fugas de dinero y vender más.
           </p>
         </div>
 
         {/* BODY */}
         <div className="p-8 md:p-10">
           
-          {/* THE CONFLICT */}
+          {/* THE CONFLICT: COST CENTER VS PROFIT CENTER */}
           <div className="grid md:grid-cols-2 gap-8 mb-10">
-             <div className="bg-red-50 rounded-xl p-6 border border-red-100">
-                <div className="flex items-center gap-2 mb-4 text-red-700 font-bold text-lg">
-                   <ShieldAlert size={24} />
-                   El Riesgo (GPS Genérico)
+             <div className="bg-slate-50 rounded-xl p-6 border border-gray-200">
+                <div className="flex items-center gap-2 mb-4 text-gray-500 font-bold text-lg">
+                   <Map size={24} />
+                   GPS Tradicional (Gasto)
                 </div>
-                <p className="text-sm text-red-800/70 mb-4 leading-relaxed">
-                   Si tu proveedor actual falla en esto, estás en riesgo de sanción o revocación de permisos según la nueva normativa:
+                <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+                   Se limita a decirte "dónde está el camión". Es un requisito que solo genera costo operativo.
                 </p>
                 <ul className="space-y-3">
-                   <li className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="text-red-500 font-bold text-lg leading-none">×</span>
-                      <span>No guarda histórico de 12 meses.</span>
+                   <li className="flex items-start gap-3 text-sm text-gray-500">
+                      <span className="text-gray-400 font-bold text-lg leading-none">•</span>
+                      <span>Solo ves puntos en un mapa.</span>
                    </li>
-                   <li className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="text-red-500 font-bold text-lg leading-none">×</span>
-                      <span>Sin API para conectar con SIRACP.</span>
+                   <li className="flex items-start gap-3 text-sm text-gray-500">
+                      <span className="text-gray-400 font-bold text-lg leading-none">•</span>
+                      <span>No cruza datos con ventas.</span>
                    </li>
-                   <li className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="text-red-500 font-bold text-lg leading-none">×</span>
-                      <span>Reporte inestable (zonas muertas).</span>
+                   <li className="flex items-start gap-3 text-sm text-gray-500">
+                      <span className="text-gray-400 font-bold text-lg leading-none">•</span>
+                      <span>Cumplimiento CNE manual y riesgoso.</span>
                    </li>
                 </ul>
              </div>
 
              <div className="bg-green-50 rounded-xl p-6 border border-green-100">
                 <div className="flex items-center gap-2 mb-4 text-brand-dark font-bold text-lg">
-                   <CheckCircle2 size={24} />
-                   La Solución (UBI-SMART)
+                   <Activity size={24} />
+                   Inteligencia UBI-SMART
                 </div>
                 <p className="text-sm text-green-800/70 mb-4 leading-relaxed">
-                   Diseñado desde la operación de un Grupo Gasero Top 4 nacional para blindar tu operación:
+                   Convierte cada recorrido en datos financieros. Detecta dónde ganas dinero y dónde lo pierdes.
                 </p>
                 <ul className="space-y-3">
                    <li className="flex items-start gap-3 text-sm text-gray-700">
                       <CheckCircle2 size={16} className="text-brand mt-0.5 shrink-0" />
-                      <span><strong>CNE Ready:</strong> Trazabilidad histórica 12 meses y exportación auditada.</span>
+                      <span><strong>Telemetría de Válvulas:</strong> Auditoría física de cada litro despachado vs notas.</span>
                    </li>
                    <li className="flex items-start gap-3 text-sm text-gray-700">
                       <CheckCircle2 size={16} className="text-brand mt-0.5 shrink-0" />
-                      <span><strong>SIRACP Ready:</strong> API abierta y cifrado TLS bancario.</span>
+                      <span><strong>Mapas de Calor Comercial:</strong> Identifica zonas de alta demanda real.</span>
                    </li>
                    <li className="flex items-start gap-3 text-sm text-gray-700">
                       <CheckCircle2 size={16} className="text-brand mt-0.5 shrink-0" />
-                      <span><strong>Anti-Fraude:</strong> Telemetría de válvulas (sabemos dónde y cuánto abrieron).</span>
+                      <span><strong>CNE Automático:</strong> Histórico y trazabilidad sin esfuerzo humano.</span>
                    </li>
                 </ul>
              </div>
@@ -119,27 +120,39 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
           {/* THE OFFER */}
           <div className="border-t border-b border-gray-100 py-8 mb-8 text-center">
              <div className="inline-block p-3 bg-brand/10 rounded-full text-brand mb-4">
-                <Zap size={24} fill="currentColor" />
+                <BarChart3 size={24} fill="currentColor" />
              </div>
-             <h2 className="text-2xl font-bold text-brand-accent mb-2">Modelo de Renta Todo Incluido</h2>
+             <h2 className="text-2xl font-bold text-brand-accent mb-2">La "Capa Extra" de Valor</h2>
              <p className="text-gray-500 max-w-lg mx-auto text-sm mb-6">
-                Olvídate de inversiones fuertes en hardware (CAPEX). Pagas una renta mensual operativa (OPEX) que incluye todo.
+                Más allá del rastreo, entregamos las herramientas para la toma de decisiones directivas.
              </p>
              
-             <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-700">
-                <span className="px-4 py-2 bg-gray-100 rounded-lg">Hardware 4G Certificado</span>
-                <span className="px-4 py-2 bg-gray-100 rounded-lg">Sensores de Válvula</span>
-                <span className="px-4 py-2 bg-gray-100 rounded-lg">Plataforma Web/App</span>
-                <span className="px-4 py-2 bg-gray-100 rounded-lg">Asesoría Regulatoria</span>
+             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="text-brand font-bold text-lg">100%</div>
+                    <div className="text-[10px] uppercase font-bold text-gray-400">Cumplimiento</div>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="text-brand font-bold text-lg">Anti</div>
+                    <div className="text-[10px] uppercase font-bold text-gray-400">Fraude</div>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="text-brand font-bold text-lg">API</div>
+                    <div className="text-[10px] uppercase font-bold text-gray-400">Integración</div>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="text-brand font-bold text-lg">ROI</div>
+                    <div className="text-[10px] uppercase font-bold text-gray-400">Inmediato</div>
+                </div>
              </div>
           </div>
 
           {/* FOOTER / CTA */}
           <div className="bg-slate-900 rounded-2xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6">
              <div>
-                <div className="text-xs uppercase tracking-widest text-gray-400 mb-1">¿Dudas sobre tu cumplimiento?</div>
-                <div className="text-xl font-bold">Agenda un diagnóstico gratuito</div>
-                <div className="text-sm text-gray-400 mt-1">+1,300 Unidades Monitoreadas en México</div>
+                <div className="text-xs uppercase tracking-widest text-gray-400 mb-1">Prueba la diferencia</div>
+                <div className="text-xl font-bold">Diagnóstico de Flota sin Costo</div>
+                <div className="text-sm text-gray-400 mt-1">Compara tu tecnología actual vs UBI-SMART</div>
              </div>
              <div className="text-right">
                 <div className="text-brand font-bold text-lg">ubiqo.net/ubi-smart</div>
