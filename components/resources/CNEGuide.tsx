@@ -130,7 +130,10 @@ export const CNEGuide: React.FC<CNEGuideProps> = ({ isOpen, onClose }) => {
 
   // --- VISTA 2: DOCUMENTO ---
   return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/95 backdrop-blur-sm flex justify-center p-0 md:p-4 print:p-0 print:bg-white print:static print:overflow-visible">
+    <div 
+      id="guide-overlay"
+      className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/95 backdrop-blur-sm flex justify-center p-0 md:p-4"
+    >
       
       {/* UI Controls (No Print) */}
       <div className="fixed top-4 right-4 flex gap-3 z-50 no-print">
@@ -148,7 +151,7 @@ export const CNEGuide: React.FC<CNEGuideProps> = ({ isOpen, onClose }) => {
       {/* BOOK CONTAINER */}
       <div 
         id="printable-guide"
-        className="bg-white w-full max-w-[800px] shadow-2xl min-h-screen relative print:shadow-none print:w-full print:max-w-none"
+        className="bg-white w-full max-w-[800px] shadow-2xl min-h-screen relative"
       >
         
         {/* --- PORTADA --- */}
