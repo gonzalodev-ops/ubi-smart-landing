@@ -1,5 +1,5 @@
-import React from 'react';
-import { X, TrendingUp, CheckCircle2, Map, Activity, BarChart3 } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, TrendingUp, CheckCircle2, Map, Activity, BarChart3, Lock, ArrowRight, Loader2, Phone, Mail } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface OnePagerProps {
@@ -7,13 +7,134 @@ interface OnePagerProps {
   onClose: () => void;
 }
 
+// Endpoint de Formspree (Mismo que contacto)
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjklggnl"; 
+
 export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
+  // Estado del flujo: 'gate' (formulario) o 'document' (pdf visible)
+  const [step, setStep] = useState<'gate' | 'document'>('gate');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Datos del usuario para personalizar el PDF
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    phone: ''
+  });
+
   if (!isOpen) return null;
 
   const handlePrint = () => {
     window.print();
   };
 
+  const handleGateSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if(!formData.name || !formData.company || !formData.phone) return;
+
+    setIsSubmitting(true);
+
+    // 1. Enviar lead a Formspree
+    try {
+      await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          origen: 'Descarga OnePager PDF', // Etiqueta para identificar de dónde vino el lead
+          mensaje: `Lead capturado mediante descarga de ficha técnica. Empresa: ${formData.company}`
+        })
+      });
+    } catch (error) {
+      console.error("Error enviando lead", error);
+    }
+
+    // 2. Desbloquear documento (incluso si falla el fetch para no frustrar al usuario)
+    setTimeout(() => {
+        setIsSubmitting(false);
+        setStep('document');
+    }, 800); // Pequeño delay para sensación de "Generando..."
+  };
+
+  // --- VISTA 1: EL CERROJO (Formulario) ---
+  if (step === 'gate') {
+    return (
+      <div className="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-sm flex items-center justify-center p-5">
+         <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 relative animate-in zoom-in-95 duration-300">
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="w-12 h-12 bg-brand/10 rounded-full flex items-center justify-center text-brand mb-6 mx-auto">
+              <Lock size={24} />
+            </div>
+            
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-bold text-brand-accent mb-2">Desbloquear Ficha Técnica</h3>
+              <p className="text-sm text-gray-500">
+                Ingresa tus datos para generar un reporte de valor personalizado para tu gasera.
+              </p>
+            </div>
+
+            <form onSubmit={handleGateSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1.5 uppercase">Tu Nombre</label>
+                <input 
+                  type="text" 
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand outline-none text-sm"
+                  placeholder="Ej. Roberto Martínez"
+                  value={formData.name}
+                  onChange={e => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1.5 uppercase">Nombre de tu Gasera / Empresa</label>
+                <input 
+                  type="text" 
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand outline-none text-sm"
+                  placeholder="Ej. Gas del Norte"
+                  value={formData.company}
+                  onChange={e => setFormData({...formData, company: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1.5 uppercase">WhatsApp</label>
+                <input 
+                  type="tel" 
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand outline-none text-sm"
+                  placeholder="(442) ..."
+                  value={formData.phone}
+                  onChange={e => setFormData({...formData, phone: e.target.value})}
+                />
+              </div>
+
+              <Button fullWidth disabled={isSubmitting} className="mt-4">
+                {isSubmitting ? (
+                   <span className="flex items-center gap-2"><Loader2 className="animate-spin" size={16}/> Generando reporte...</span>
+                ) : (
+                   <span className="flex items-center gap-2">Descargar PDF Personalizado <ArrowRight size={16}/></span>
+                )}
+              </Button>
+              
+              <p className="text-[10px] text-center text-gray-400 mt-4">
+                Tus datos son confidenciales. Se enviará una copia a tu equipo de ventas.
+              </p>
+            </form>
+         </div>
+      </div>
+    );
+  }
+
+  // --- VISTA 2: EL DOCUMENTO (PDF) ---
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/90 backdrop-blur-sm flex items-start justify-center p-0 md:p-4 print:p-0 print:bg-white print:static print:overflow-visible">
       
@@ -44,7 +165,10 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
                 <div className="w-10 h-10 rounded-lg bg-white text-brand-accent flex items-center justify-center font-bold text-lg print:border print:border-gray-300">UQ</div>
                 <div>
                   <div className="font-bold uppercase tracking-widest text-sm text-brand">UBI-SMART GAS LP</div>
-                  <div className="text-[10px] text-gray-300 print:text-gray-400">Tecnología de Rentabilidad Operativa</div>
+                  {/* Personalización Dinámica */}
+                  <div className="text-[10px] text-gray-300 print:text-gray-400 mt-0.5">
+                    Reporte de Valor preparado para: <span className="text-white font-bold text-xs border-b border-brand/50 pb-0.5">{formData.company}</span>
+                  </div>
                 </div>
              </div>
              <div className="text-right">
@@ -152,17 +276,23 @@ export const OnePager: React.FC<OnePagerProps> = ({ isOpen, onClose }) => {
              <div>
                 <div className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Prueba la diferencia</div>
                 <div className="text-lg font-bold">Diagnóstico de Flota sin Costo</div>
-                <div className="text-xs text-gray-400 mt-0.5">Compara tu tecnología actual vs UBI-SMART</div>
+                <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-2">
+                   <span>Habla con un ingeniero experto</span>
+                </div>
              </div>
              <div className="text-right">
-                <div className="text-brand font-bold text-base">ubiqo.net/ubi-smart</div>
-                <div className="text-xs text-gray-400">Solicita demo al whatsapp</div>
+                <div className="text-brand font-bold text-base flex items-center justify-end gap-2">
+                   <Phone size={14} className="text-brand" /> (442) 391-1129
+                </div>
+                <div className="text-xs text-gray-400 flex items-center justify-end gap-2 mt-0.5">
+                   <Mail size={12} /> ventas@integrador.pro
+                </div>
              </div>
           </div>
 
           <div className="mt-6 text-center print:mt-4">
              <p className="text-[9px] text-gray-400 uppercase tracking-wider">
-                Documento generado por UBI-SMART Gas LP · {new Date().getFullYear()}
+                Documento generado por UBI-SMART Gas LP para {formData.company} · {new Date().getFullYear()}
              </p>
           </div>
 
