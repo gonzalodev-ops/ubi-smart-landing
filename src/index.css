@@ -9,65 +9,78 @@
 }
 
 @media print {
-  /* Configuración base de página */
+  /* --- CONFIGURACIÓN GENERAL DE IMPRESIÓN --- */
   @page {
     size: letter;
-    margin: 0mm;
+    margin: 0mm; /* Controlamos los márgenes internamente */
   }
 
-  /* Ocultar todo por defecto */
-  body {
+  html, body {
     visibility: hidden;
-    background: white;
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
   }
 
-  /* --- ESTILOS PARA ONE PAGER (1 PÁGINA FIJA) --- */
+  /* Ocultar elementos de UI no imprimibles */
+  .no-print, header, footer, #floating-badge {
+    display: none !important;
+  }
+
+  /* --- MODO 1: ONE PAGER (1 PÁGINA FIJA) --- */
   #printable-area {
     visibility: visible;
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100vh; /* Forzar altura de hoja */
-    margin: 0;
-    padding: 0;
-    background: white;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
     z-index: 9999;
-    transform: scale(0.85); /* Ajuste para márgenes de impresora */
+    display: block !important;
+    transform: scale(0.85); /* Ajuste para encajar en hoja carta sin bordes */
     transform-origin: top center;
-    overflow: hidden; /* Cortar desbordes */
+    overflow: hidden !important;
   }
+  
   #printable-area * {
     visibility: visible;
   }
 
-  /* --- ESTILOS PARA GUÍA CNE (MULTI PÁGINA) --- */
+  /* --- MODO 2: GUÍA CNE (MULTI PÁGINA) --- */
+  /* Reset total del layout para permitir flujo natural de páginas */
   #printable-guide {
     visibility: visible;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto; /* Permitir flujo vertical */
-    margin: 0;
-    padding: 0;
-    background: white;
+    position: relative !important; /* Cambiado de absolute a relative */
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important; /* Desactivar flexbox */
+    background: white !important;
     z-index: 9999;
-    overflow: visible;
   }
+
   #printable-guide * {
     visibility: visible;
   }
   
-  /* Evitar cortes feos en párrafos y títulos de la guía */
+  /* Forzar saltos de página limpios entre capítulos */
   .chapter-break {
     break-inside: avoid;
     page-break-inside: avoid;
     margin-bottom: 2rem;
+    display: block !important; /* Asegurar comportamiento de bloque */
   }
 
-  /* Ocultar botones de UI */
-  .no-print {
-    display: none !important;
+  /* Asegurar que textos blancos sobre fondos oscuros se impriman */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
