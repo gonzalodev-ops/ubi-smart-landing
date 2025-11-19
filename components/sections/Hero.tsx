@@ -14,14 +14,14 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-24 px-5 overflow-hidden">
+    <section className="relative pt-24 md:pt-32 pb-16 md:pb-24 px-5 overflow-hidden">
       {/* Ambient Background Mesh */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-brand/5 blur-3xl"></div>
-        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-3xl"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full bg-brand/5 blur-3xl"></div>
+        <div className="absolute bottom-[10%] left-[-10%] w-[250px] md:w-[500px] h-[250px] md:h-[500px] rounded-full bg-blue-500/5 blur-3xl"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1.3fr] gap-16 items-center">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_1.3fr] gap-10 md:gap-16 items-center">
         
         {/* Left Content */}
         <div className="relative z-10">
@@ -33,26 +33,26 @@ export const Hero: React.FC = () => {
             Tecnología CNE Ready
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-accent leading-[1.1] mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-brand-accent leading-[1.1] mb-6">
             Control total de tu gasera,<br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-dark">sin sorpresas.</span>
           </h1>
           
-          <p className="text-lg text-gray-500 mb-8 leading-relaxed max-w-lg">
+          <p className="text-base md:text-lg text-gray-500 mb-8 leading-relaxed max-w-lg">
             GPS, telemetría y lectura de válvulas diseñados para cumplir con la CNE hoy y proteger tu margen operativo siempre.
           </p>
 
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-10">
             <Badge strong>Cumplimiento CNE</Badge>
             <Badge>Integración SIRACP</Badge>
             <Badge>Anti-fraude Válvulas</Badge>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <Button icon="play" className="shadow-xl shadow-brand/20" onClick={scrollToFeatures}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <Button icon="play" className="shadow-xl shadow-brand/20 w-full sm:w-auto" onClick={scrollToFeatures}>
               Conocer la plataforma
             </Button>
-            <button onClick={scrollToContact} className="text-xs text-gray-500 pl-4 border-l border-gray-200 hover:text-brand-dark transition-colors text-left">
+            <button onClick={scrollToContact} className="text-xs text-gray-500 sm:pl-4 sm:border-l border-gray-200 hover:text-brand-dark transition-colors text-left">
               <div className="font-bold text-brand-accent">¿Tienes prisa?</div>
               Solicitar diagnóstico directo
             </button>
@@ -60,15 +60,15 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right: High Fidelity SaaS Mockup */}
-        <div className="relative">
+        <div className="relative mt-8 lg:mt-0">
             {/* Glow effect behind the dashboard */}
             <div className="absolute -inset-4 bg-gradient-to-tr from-brand/20 to-blue-600/20 rounded-[40px] blur-2xl opacity-60"></div>
             
             {/* The Dashboard Container */}
-            <div className="relative bg-white rounded-[24px] shadow-2xl shadow-slate-200/50 border border-slate-200/60 overflow-hidden flex aspect-[16/10]">
+            <div className="relative bg-white rounded-[24px] shadow-2xl shadow-slate-200/50 border border-slate-200/60 overflow-hidden flex aspect-[4/3] md:aspect-[16/10]">
               
-              {/* Sidebar */}
-              <div className="w-16 bg-brand-accent flex flex-col items-center py-6 gap-6 border-r border-slate-700">
+              {/* Sidebar (Hidden on Mobile) */}
+              <div className="hidden md:flex w-16 bg-brand-accent flex-col items-center py-6 gap-6 border-r border-slate-700">
                 <div className="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white font-bold text-xs mb-4">U</div>
                 <div className="p-2 bg-white/10 rounded-lg text-white"><Map size={20} /></div>
                 <div className="p-2 text-slate-400 hover:text-white transition-colors"><Truck size={20} /></div>
@@ -80,10 +80,10 @@ export const Hero: React.FC = () => {
               <div className="flex-1 flex flex-col bg-slate-50">
                 
                 {/* Top Bar */}
-                <div className="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6">
+                <div className="h-12 md:h-14 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6">
                   <div className="flex items-center gap-4 text-slate-400 text-sm">
                      <Menu size={18} />
-                     <div className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full w-48">
+                     <div className="hidden md:flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full w-48">
                         <Search size={14} />
                         <span className="text-xs">Buscar unidad...</span>
                      </div>
@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                        <span className="text-[10px] font-bold text-green-700">CNE Conectado</span>
                     </div>
-                    <div className="w-8 h-8 bg-slate-200 rounded-full"></div>
+                    <div className="w-7 h-7 md:w-8 md:h-8 bg-slate-200 rounded-full"></div>
                   </div>
                 </div>
 
@@ -118,7 +118,7 @@ export const Hero: React.FC = () => {
                          <div className="w-8 h-8 bg-slate-800 rounded-full border-2 border-white shadow-lg flex items-center justify-center text-white z-10 relative">
                             <Truck size={14} />
                          </div>
-                         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 bg-slate-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                         <div className="hidden md:block absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 bg-slate-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                             Unidad 204 (Detenido)
                          </div>
                       </div>
@@ -134,8 +134,8 @@ export const Hero: React.FC = () => {
                          </div>
                       </div>
 
-                      {/* Floating Info Card (The "Magic") */}
-                      <div className="absolute top-full left-1/2 ml-4 -mt-8 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                      {/* Floating Info Card (Hidden on Mobile to prevent overlap) */}
+                      <div className="hidden md:block absolute top-full left-1/2 ml-4 -mt-8 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-700">
                          <div className="flex justify-between items-start mb-2">
                             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Evento detectado</span>
                             <span className="text-[10px] font-mono text-gray-400">12:42 PM</span>

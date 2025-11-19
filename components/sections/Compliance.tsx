@@ -129,8 +129,8 @@ export const Compliance: React.FC = () => {
              </div>
           </div>
 
-          {/* Results Card (Sticky-ish) */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 sticky top-24">
+          {/* Results Card (Sticky only on large screens) */}
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 lg:sticky lg:top-24">
             <div className="text-center">
               <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Tu estatus actual</div>
               
