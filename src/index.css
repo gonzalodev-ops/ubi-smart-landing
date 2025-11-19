@@ -9,15 +9,17 @@
 }
 
 @media print {
-  /* Configuración estricta de página Carta */
+  /* Configuración estricta de página Carta (US Letter) */
   @page {
     size: letter;
     margin: 0mm;
   }
 
-  /* Ocultar todo el contenido del body por defecto */
-  body * {
+  /* Ocultar todo el contenido del body por defecto para evitar páginas en blanco */
+  body {
     visibility: hidden;
+    height: 100vh;
+    overflow: hidden;
   }
 
   /* Hacer visible SOLO el área imprimible y sus hijos */
@@ -25,7 +27,7 @@
     visibility: visible;
   }
 
-  /* Posicionar el área imprimible y escalar para asegurar ajuste */
+  /* Posicionar el área imprimible de forma absoluta para tomar control total de la hoja */
   #printable-area {
     position: absolute;
     left: 0;
@@ -36,7 +38,7 @@
     padding: 0;
     background: white;
     z-index: 9999;
-    /* Escalar al 85% para garantizar que quepa en una sola hoja con márgenes seguros */
+    /* Escalar al 85% para garantizar que quepa en una sola hoja con márgenes seguros de impresora */
     transform: scale(0.85);
     transform-origin: top center;
   }
