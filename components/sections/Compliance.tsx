@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Circle, AlertTriangle, ShieldCheck, RefreshCw, Lock, BookOpen } from 'lucide-react';
+import { CheckCircle2, Circle, AlertTriangle, ShieldCheck, RefreshCw, Lock, BookOpen, Download, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { CNEGuide } from '../resources/CNEGuide';
 
@@ -100,7 +100,7 @@ export const Compliance: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start mb-16">
           {/* Interactive List */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
              <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
@@ -184,35 +184,71 @@ export const Compliance: React.FC = () => {
                 }
               </p>
 
-              {progress < 100 && (
-                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 mb-6 text-left">
-                  <div className="flex items-start gap-3">
-                    <Lock className="text-brand shrink-0 mt-0.5" size={16} />
-                    <div className="text-xs text-gray-600">
-                      <span className="font-bold block text-brand-accent mb-1">Solución UBI-SMART:</span>
-                      Cubrimos el {100 - Math.round(progress)}% restante automáticamente al migrar tu flota.
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div className="space-y-3">
-                <Button fullWidth onClick={scrollToContact}>
-                  {progress === 100 ? 'Solicitar Auditoría Preventiva' : 'Cerrar brechas de cumplimiento'}
-                </Button>
-                
-                <button 
-                  onClick={() => setShowGuide(true)}
-                  className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-gray-500 hover:text-brand transition-colors"
-                >
-                   <BookOpen size={16} />
-                   Leer Guía de Implementación
-                </button>
-              </div>
+              <Button fullWidth onClick={scrollToContact}>
+                {progress === 100 ? 'Solicitar Auditoría Preventiva' : 'Cerrar brechas de cumplimiento'}
+              </Button>
 
             </div>
           </div>
         </div>
+
+        {/* --- NEW: PREMIUM RESOURCE SECTION (LIBRARY) --- */}
+        <div id="recursos-cne" className="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl relative">
+          {/* Abstract Background Decoration */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand rounded-full opacity-10 blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600 rounded-full opacity-10 blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
+
+          <div className="relative z-10 p-8 md:p-12 grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
+             <div>
+               <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-white/20 bg-white/5 text-xs font-bold text-brand uppercase tracking-widest mb-6">
+                 <BookOpen size={14} />
+                 Recurso Premium
+               </div>
+               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                 No adivines.<br/>
+                 <span className="text-gray-400">Descarga el manual definitivo.</span>
+               </h3>
+               <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                 Hemos compilado los 10 puntos críticos del acuerdo en una guía de implementación paso a paso. Incluye checklist de auditoría y estrategia de integración SIRACP.
+               </p>
+               
+               <div className="flex flex-wrap gap-4">
+                  <button 
+                    onClick={() => setShowGuide(true)}
+                    className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-brand/30 flex items-center gap-3 transition-all hover:scale-105 active:scale-95"
+                  >
+                    <Download size={20} />
+                    Descargar Guía CNE 2025
+                  </button>
+               </div>
+               
+               <div className="mt-8 pt-8 border-t border-white/10 text-xs text-gray-500 flex gap-6">
+                  <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand" /> Formato E-Book PDF</span>
+                  <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand" /> Lectura de 5 min</span>
+                  <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-brand" /> Sin costo</span>
+               </div>
+             </div>
+
+             {/* Book Mockup */}
+             <div className="relative hidden md:block perspective-1000">
+                <div className="relative w-[280px] aspect-[3/4] bg-gradient-to-br from-white to-gray-100 rounded-r-2xl rounded-l-sm shadow-2xl transform rotate-y-12 border-l-8 border-slate-800 flex flex-col p-6 justify-between group cursor-pointer hover:rotate-y-6 transition-transform duration-500" onClick={() => setShowGuide(true)}>
+                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-r-2xl"></div>
+                   <div>
+                      <div className="text-brand font-bold text-xl mb-2">UBI-SMART</div>
+                      <div className="text-slate-900 text-3xl font-extrabold leading-none mb-4">GUÍA<br/>TÉCNICA<br/>CNE 2025</div>
+                      <div className="w-12 h-1 bg-brand rounded-full"></div>
+                   </div>
+                   <div className="flex justify-between items-end">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Edición Directiva</div>
+                      <ArrowRight className="text-slate-900" />
+                   </div>
+                </div>
+                {/* Shadow */}
+                <div className="absolute bottom-[-20px] left-4 w-[260px] h-4 bg-black/40 blur-xl rounded-full"></div>
+             </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

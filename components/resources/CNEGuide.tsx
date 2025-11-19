@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, BookOpen, Download, ArrowRight, ShieldAlert, CheckSquare, Map, Lock, Loader2, Phone, Mail } from 'lucide-react';
+import { X, BookOpen, Download, ArrowRight, ShieldAlert, CheckSquare, Map, Lock, Loader2, Phone, Mail, TrendingUp, PieChart } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface CNEGuideProps {
@@ -256,6 +256,32 @@ export const CNEGuide: React.FC<CNEGuideProps> = ({ isOpen, onClose }) => {
                 <h3 className="text-lg font-bold text-brand-dark mb-2">3.3. SIRACP</h3>
                 <p className="text-sm">Es el "SAT operativo". Aquí se gestionan altas, bajas y códigos QR. Tu plataforma de GPS debe poder hablar con SIRACP vía API para no tener que capturar datos manualmente.</p>
               </div>
+
+              {/* NUEVO CAPÍTULO AGREGADO */}
+              <div className="bg-blue-50 p-6 rounded-xl border border-blue-100" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact', backgroundColor: '#eff6ff' }}>
+                <h3 className="text-lg font-bold text-brand-dark mb-2 flex items-center gap-2">
+                  <TrendingUp size={18} className="text-brand" />
+                  3.4. El Bonus: Inteligencia de Mercado Real
+                </h3>
+                <p className="text-sm mb-3 italic text-gray-600">
+                  La mayoría cumple por miedo, pero pocos usan la data para vender más.
+                </p>
+                <ul className="space-y-3 text-sm text-gray-700">
+                   <li className="flex gap-3 items-start">
+                      <div className="mt-1 shrink-0"><PieChart size={14} className="text-brand"/></div>
+                      <span><strong>Detectar rutas "invisibles":</strong> Si tienes muchas aperturas en lugares no registrados, hay un mercado potencial que no estás atendiendo formalmente.</span>
+                   </li>
+                   <li className="flex gap-3 items-start">
+                      <div className="mt-1 shrink-0"><PieChart size={14} className="text-brand"/></div>
+                      <span><strong>Ver colonias de alto consumo:</strong> El mapa de calor te dice dónde está realmente el dinero, no solo dónde "crees" que está.</span>
+                   </li>
+                   <li className="flex gap-3 items-start">
+                      <div className="mt-1 shrink-0"><PieChart size={14} className="text-brand"/></div>
+                      <span><strong>Auditoría comercial:</strong> Identifica rutas "muy trabajadas" (muchos km, muchas paradas) pero "poco cobradas" (bajo ticket promedio). Ahí está la fuga de margen.</span>
+                   </li>
+                </ul>
+              </div>
+
             </div>
           </div>
 

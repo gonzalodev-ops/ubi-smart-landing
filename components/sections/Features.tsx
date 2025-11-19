@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { MapPin, TrendingUp, Target, PieChart, ArrowRight, Navigation, DollarSign, Layers, Activity } from 'lucide-react';
+import { MapPin, TrendingUp, Target, PieChart, ArrowRight, Navigation, DollarSign, Layers, Activity, Wrench, AlertTriangle, History } from 'lucide-react';
 
 export const Features: React.FC = () => {
   return (
@@ -133,39 +132,100 @@ export const Features: React.FC = () => {
         </div>
       </div>
 
-      {/* Margin/Risk Section */}
+      {/* Margin/Risk Section - UPDATED WITH LIVING SLIDES */}
       <div className="max-w-6xl mx-auto pt-10 border-t border-gray-100">
          <div className="text-center mb-12">
             <h2 className="text-2xl font-bold text-brand-accent">Control Operativo y Riesgo</h2>
             <p className="text-sm text-gray-500 mt-2">Lo que necesitas para proteger el margen día a día.</p>
          </div>
          
-         <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-slate-50 p-8 rounded-2xl border border-gray-200 relative overflow-hidden hover:shadow-md transition-shadow">
-               <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 rounded-bl-full -mr-4 -mt-4"></div>
-               <h3 className="text-lg font-bold text-brand-accent mb-4 flex items-center gap-2">
-                 <DollarSign className="text-brand" size={20} />
-                 Control de Costos
-               </h3>
-               <ul className="space-y-3 text-sm text-gray-600 relative z-10">
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Control de kilómetros vs presupuesto.</span></li>
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Alertas de desvíos y paradas no autorizadas.</span></li>
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Rendimiento real de combustible.</span></li>
-               </ul>
+         <div className="grid md:grid-cols-2 gap-8">
+            
+            {/* SLIDE 11: MANTENIMIENTO (Fleet Health Widget) */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group">
+               <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded mb-2">
+                        <Wrench size={12} /> Mantenimiento Preventivo
+                    </div>
+                    <h3 className="text-lg font-bold text-brand-accent">Salud de la Flota</h3>
+                  </div>
+               </div>
+
+               {/* Interactive List Simulation */}
+               <div className="space-y-4 mb-6">
+                  {/* Unit 1 - Healthy */}
+                  <div className="flex items-center gap-3 text-xs">
+                      <div className="w-12 font-bold text-gray-600">Eco-10</div>
+                      <div className="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden">
+                          <div className="bg-brand h-full w-[20%] rounded-full"></div>
+                      </div>
+                      <div className="text-gray-400 w-16 text-right">4,500 km</div>
+                  </div>
+                  {/* Unit 2 - Warning */}
+                  <div className="flex items-center gap-3 text-xs">
+                      <div className="w-12 font-bold text-gray-600">Eco-24</div>
+                      <div className="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden">
+                          <div className="bg-yellow-400 h-full w-[85%] rounded-full"></div>
+                      </div>
+                      <div className="text-yellow-600 font-bold w-16 text-right">Próx: 200km</div>
+                  </div>
+                  {/* Unit 3 - Critical */}
+                  <div className="flex items-center gap-3 text-xs">
+                      <div className="w-12 font-bold text-gray-600">Eco-08</div>
+                      <div className="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden">
+                          <div className="bg-red-500 h-full w-[100%] rounded-full animate-pulse"></div>
+                      </div>
+                      <div className="text-red-500 font-bold w-16 text-right">VENCIDO</div>
+                  </div>
+               </div>
+
+               <p className="text-xs text-gray-500 leading-relaxed">
+                  Olvídate de las "corazonadas". Programa servicios basados en kilometraje real y horas de motor. Reduce las reparaciones de emergencia.
+               </p>
             </div>
 
-            <div className="bg-slate-50 p-8 rounded-2xl border border-gray-200 relative overflow-hidden hover:shadow-md transition-shadow">
-               <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-full -mr-4 -mt-4"></div>
-               <h3 className="text-lg font-bold text-brand-accent mb-4 flex items-center gap-2">
-                 <MapPin className="text-brand" size={20} />
-                 Evidencia (Caja Negra)
-               </h3>
-               <ul className="space-y-3 text-sm text-gray-600 relative z-10">
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Reconstrucción de hechos para aseguradoras.</span></li>
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Detalle de velocidades y tiempos muertos.</span></li>
-                 <li className="flex items-start gap-2"><ArrowRight size={14} className="text-brand mt-1 shrink-0"/> <span>Histórico inalterable para auditorías.</span></li>
-               </ul>
+            {/* SLIDE 12: CAJA NEGRA (Incident Reconstruction Widget) */}
+            <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group text-white">
+               {/* Grid Effect */}
+               <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'linear-gradient(#334155 1px, transparent 1px), linear-gradient(to right, #334155 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+               
+               <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-6">
+                      <div>
+                        <div className="inline-flex items-center gap-2 px-2 py-1 bg-red-500/20 text-red-400 text-[10px] font-bold uppercase rounded mb-2 border border-red-500/30">
+                            <History size={12} /> Evidencia Forense
+                        </div>
+                        <h3 className="text-lg font-bold text-white">Caja Negra Digital</h3>
+                      </div>
+                  </div>
+
+                  {/* Incident Graph Simulation */}
+                  <div className="bg-slate-800/50 rounded-xl p-4 mb-6 border border-slate-700">
+                      <div className="flex justify-between text-[9px] text-slate-400 uppercase mb-2">
+                          <span>Velocidad (km/h)</span>
+                          <span>Tiempo Real</span>
+                      </div>
+                      <div className="h-24 flex items-end gap-1 relative">
+                          {/* Bars */}
+                          {[20, 35, 45, 50, 65, 82, 40, 0, 0, 0].map((h, i) => (
+                             <div key={i} className={`w-1/10 rounded-t-sm transition-all duration-500 ${i === 5 ? 'bg-red-500 animate-pulse' : 'bg-blue-500/50'}`} style={{height: `${h}%`, width: '10%'}}></div>
+                          ))}
+                          
+                          {/* Event Marker */}
+                          <div className="absolute top-[10%] left-[55%] flex flex-col items-center">
+                              <div className="px-2 py-1 bg-red-500 text-white text-[8px] font-bold rounded mb-1">Frenado Brusco</div>
+                              <div className="w-0.5 h-8 bg-red-500/50"></div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                     Reconstrucción segundo a segundo. Velocidad, frenado y ubicación exacta. La evidencia que necesitas para defenderte ante la autoridad o la aseguradora.
+                  </p>
+               </div>
             </div>
+
          </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ const navItems = [
   { label: 'Experiencia', href: '#experiencia' },
   { label: 'Pilares', href: '#pilares' },
   { label: 'CNE / SIRACP', href: '#cumplimiento' },
+  { label: 'Recursos', href: '#recursos-cne' }, // New Link
   { label: 'FAQs', href: '#faqs' },
   { label: 'Modelo', href: '#modelo' },
 ];
