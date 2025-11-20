@@ -49,7 +49,7 @@ export const Experience: React.FC = () => {
                  <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm mx-auto mb-2 text-brand">
                    <Truck size={20} />
                  </div>
-                 <div className="font-bold text-xl text-brand-accent">+1,300</div>
+                 <div className="font-bold text-xl text-brand-accent">+2,200</div>
                  <div className="text-[10px] uppercase font-bold text-gray-400">Unidades</div>
                </div>
                <div className="text-center">
@@ -111,4 +111,3 @@ export const Experience: React.FC = () => {
       </div>
     </section>
   );
-};
