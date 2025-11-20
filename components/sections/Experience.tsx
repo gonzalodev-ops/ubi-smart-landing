@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle2, Truck, MapPin, Users } from 'lucide-react';
-
+//
 export const Experience: React.FC = () => {
   return (
     <section id="experiencia" className="py-24 bg-white">
