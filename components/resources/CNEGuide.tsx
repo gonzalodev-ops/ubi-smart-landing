@@ -9,7 +9,8 @@ interface CNEGuideProps {
   onClose: () => void;
 }
 
-// Endpoint de Formspree
+// Endpoint
+// de Formspree
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjklggnl"; 
 
 export const CNEGuide: React.FC<CNEGuideProps> = ({ isOpen, onClose }) => {
