@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 // Registrar fuentes estándar (usaremos Helvetica por defecto que viene incluida, 
 // pero definimos estilos para simular pesos)
