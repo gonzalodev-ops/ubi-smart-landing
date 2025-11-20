@@ -1,9 +1,7 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 
-// Registrar fuentes estándar (usaremos Helvetica por defecto que viene incluida, 
-// pero definimos estilos para simular pesos)
-
+// Estilos para el PDF
 const styles = StyleSheet.create({
   page: {
     backgroundColor: '#ffffff',
@@ -37,12 +35,12 @@ const styles = StyleSheet.create({
   coverTitle: {
     fontSize: 36,
     color: '#ffffff',
-    fontWeight: 'black', // Helvetica-Bold
+    fontWeight: 'black',
     lineHeight: 1.2,
     marginBottom: 20,
   },
   coverHighlight: {
-    color: '#00b388', // Brand
+    color: '#00b388', // Brand Green
   },
   coverSubtitle: {
     fontSize: 16,
@@ -142,13 +140,14 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   
-  // Bonus Box
+  // Bonus Box (Inteligencia de Mercado)
   bonusBox: {
     backgroundColor: '#eff6ff', // Blue 50
     padding: 15,
     borderRadius: 8,
     marginTop: 15,
     marginBottom: 15,
+    border: '1px solid #dbeafe',
   },
   bonusTitle: {
     fontSize: 12,
@@ -242,7 +241,7 @@ export const CNEPdfDocument: React.FC<CNEPdfProps> = ({ name, company }) => (
         <View style={styles.coverFooter}>
             <View>
                 <Text style={styles.coverClientLabel}>DOCUMENTO PREPARADO PARA:</Text>
-                <Text style={styles.coverClientName}>{company}</Text>
+                <Text style={styles.coverClientName}>{company || 'Gasera'}</Text>
                 <Text style={styles.coverClientUser}>{name}</Text>
             </View>
             <Text style={{color: '#64748b', fontSize: 10}}>www.ubiqo.net</Text>
@@ -282,7 +281,7 @@ export const CNEPdfDocument: React.FC<CNEPdfProps> = ({ name, company }) => (
         </View>
     </Page>
 
-    {/* --- PÁGINA 3: LOS 3 BLOQUES --- */}
+    {/* --- PÁGINA 3: LOS 3 BLOQUES + BONUS --- */}
     <Page size="LETTER" style={styles.page}>
         <View style={styles.section}>
             <Text style={styles.header}>Requisitos Técnicos</Text>
@@ -309,6 +308,7 @@ export const CNEPdfDocument: React.FC<CNEPdfProps> = ({ name, company }) => (
                 Es el "SAT operativo". Aquí se gestionan altas, bajas y códigos QR. Tu plataforma de GPS debe poder hablar con SIRACP vía API para no capturar datos manualmente.
             </Text>
 
+            {/* BONUS SECTION */}
             <View style={styles.bonusBox}>
                 <Text style={styles.bonusTitle}>3.4. El Bonus: Inteligencia de Mercado Real</Text>
                 <Text style={styles.text}>La mayoría cumple por miedo, pero pocos usan la data para vender más.</Text>
@@ -328,21 +328,24 @@ export const CNEPdfDocument: React.FC<CNEPdfProps> = ({ name, company }) => (
             <Text style={styles.h1}>4. Checklist de Acción</Text>
             
             <Text style={styles.h2}>Semana 1: Diagnóstico</Text>
-            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Inventario fino: ¿Qué unidad con qué permiso?</Text></View>
-            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Auditoría GPS: ¿Mi proveedor guarda 12 meses?</Text></View>
-            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Balizado: ¿Tengo espacio físico para el QR?</Text></View>
+            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Inventario fino: ¿Qué unidad corresponde a qué permiso exacto?</Text></View>
+            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Auditoría GPS: ¿Mi proveedor actual guarda 12 meses de histórico?</Text></View>
+            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Balizado: ¿Tengo espacio físico en la unidad para el nuevo QR?</Text></View>
 
             <Text style={styles.h2}>Semanas 2-4: Ejecución</Text>
             <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Solicitar códigos QR vía SIRACP.</Text></View>
-            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Migrar a GPS 4G con API abierta.</Text></View>
-            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Definir quién reportará altas/bajas en SIRACP.</Text></View>
+            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Migrar o actualizar GPS a tecnología 4G con API abierta.</Text></View>
+            <View style={styles.checkRow}><View style={styles.checkSquare}/><Text style={styles.text}>Definir perfiles de usuario: ¿Quién dará de baja las unidades siniestradas?</Text></View>
 
-            <Text style={styles.h1}>5. Errores que cuestan dinero</Text>
+            <Text style={styles.h1}>5. Errores que te costarán dinero</Text>
             <View style={styles.bulletPoint}><Text style={{...styles.bullet, color: '#ea580c'}}>X</Text><Text style={{...styles.text, fontWeight: 'bold'}}>Comprar cualquier GPS barato</Text></View>
             <Text style={{...styles.text, marginLeft: 15}}>Si no guarda 12 meses de histórico, es multa segura en la primera auditoría.</Text>
 
             <View style={styles.bulletPoint}><Text style={{...styles.bullet, color: '#ea580c'}}>X</Text><Text style={{...styles.text, fontWeight: 'bold'}}>Olvidar la integración</Text></View>
             <Text style={{...styles.text, marginLeft: 15}}>SIRACP es digital. Enfocarse solo en la calcomanía física es un error. Necesitas software.</Text>
+            
+            <View style={styles.bulletPoint}><Text style={{...styles.bullet, color: '#ea580c'}}>X</Text><Text style={{...styles.text, fontWeight: 'bold'}}>No aprovechar el cambio</Text></View>
+            <Text style={{...styles.text, marginLeft: 15}}>Implementar todo "a fuerza" sin usar esa misma tecnología para controlar combustible y rutas. Si ya vas a pagar el GPS, úsalo para mejorar tu margen.</Text>
         </View>
     </Page>
 
